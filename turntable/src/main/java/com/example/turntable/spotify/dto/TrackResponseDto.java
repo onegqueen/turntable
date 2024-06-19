@@ -1,5 +1,6 @@
 package com.example.turntable.spotify.dto;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,6 @@ import lombok.Setter;
 public class TrackResponseDto {
     private String id;
     private String name;
-    private String artist;
+    private List<String> artists;
     private String albumName;
 }
