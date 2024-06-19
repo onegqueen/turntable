@@ -24,10 +24,12 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.session:spring-session-core'
+	implementation "com.h2database:h2"
+	implementation 'com.github.thelinmichael:spotify-web-api-java:master-SNAPSHOT'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -37,4 +39,11 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+allprojects {
+	repositories {
+		mavenCentral()
+		maven { url "https://jitpack.io" }
+	}
 }
