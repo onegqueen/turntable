@@ -25,7 +25,7 @@ public class SpotifyService {
         this.spotifyApi = spotifyApi;
     }
 
-    public List<TrackResponseDto> searchTrancks(String keyword){
+    public List<TrackResponseDto> searchTracks(String keyword){
         SearchTracksRequest searchTracksRequest = spotifyApi.searchTracks(keyword).build();
 
         try {
