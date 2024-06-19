@@ -1,9 +1,13 @@
 package com.example.turntable.spotify;
 
+import com.example.turntable.spotify.dto.ArtistResponseDto;
 import com.example.turntable.spotify.dto.TrackResponseDto;
 import com.wrapper.spotify.SpotifyApi;
+import com.wrapper.spotify.model_objects.specification.Artist;
 import com.wrapper.spotify.model_objects.specification.Paging;
 import com.wrapper.spotify.model_objects.specification.Track;
+import com.wrapper.spotify.requests.data.search.SearchItemRequest;
+import com.wrapper.spotify.requests.data.search.simplified.SearchArtistsRequest;
 import com.wrapper.spotify.requests.data.search.simplified.SearchTracksRequest;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -47,6 +51,25 @@ public class SpotifyService {
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to search tracks", e);
+        }
+    }
+
+    public List<ArtistResponseDto>searchArtist(String keyword){
+        SearchArtistsRequest searchArtistsRequest = spotifyApi.searchArtists(keyword).build();
+
+        try{
+             Paging<Artist> artistPaging = searchArtistsRequest.execute();
+             Artist[] artists = artistPaging.getItems();
+
+             return Arrays.stream(artists).map(artist -> {
+                 ArtistResponseDto artistResponseDto = new ArtistResponseDto();
+                 artistResponseDto.setId(artist.getId());
+                 artistResponseDto.setName(artist.getName());
+                 return artistResponseDto;
+             }).collect(Collectors.toList());
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException("Failed to search artist", e);
         }
     }
 }
