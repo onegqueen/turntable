@@ -11,5 +11,4 @@ public class TrackResponseDto {
     private String name;
     private List<String> artists;
     private String albumName;
-
 }
