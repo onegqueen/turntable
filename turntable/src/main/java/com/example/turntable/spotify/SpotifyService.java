@@ -57,7 +57,6 @@ public class SpotifyService {
 
     public List<ArtistResponseDto>searchArtist(String keyword){
         SearchArtistsRequest searchArtistsRequest = spotifyApi.searchArtists(keyword).build();
-
         try{
              Paging<Artist> artistPaging = searchArtistsRequest.execute();
              Artist[] artists = artistPaging.getItems();
@@ -98,6 +97,7 @@ public class SpotifyService {
             .seed_artists(seedArtistsStr)
             .seed_genres(seedGenresStr)
             .seed_tracks(seedTracksStr)
+            .limit(10)
             .build();
 
         System.out.println("Seed Artists: " + recommendRequestDto.getSeedArtists().toString());

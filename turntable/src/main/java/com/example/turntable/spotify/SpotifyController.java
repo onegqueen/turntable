@@ -21,7 +21,7 @@ public class SpotifyController {
         return spotifyService.searchTracks(query);
     }
 
-    @GetMapping("/search/artist")
+    @GetMapping("/search/atist")
     public List<ArtistResponseDto> searchTracksByArtist(@RequestParam String keyword) {
         return spotifyService.searchArtist(keyword);
     }
