@@ -22,4 +22,9 @@ public class SpotifyController {
     public List<ArtistResponseDto> searchTracksByArtist(@RequestParam String keyword) {
         return spotifyService.searchArtist(keyword);
     }
+
+    @GetMapping("/search/genre")
+    public List<String> searchGenres() {
+        return spotifyService.searchGenre();
+    }
 }

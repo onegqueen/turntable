@@ -70,7 +70,7 @@ public class SpotifyService {
         }
     }
 
-    public List<String> searchGenre(String keyword){
+    public List<String> searchGenre(){
         GetAvailableGenreSeedsRequest getAvailableGenreSeedsRequest = spotifyApi.getAvailableGenreSeeds().build();
         try{
             String[] genres = getAvailableGenreSeedsRequest.execute();
