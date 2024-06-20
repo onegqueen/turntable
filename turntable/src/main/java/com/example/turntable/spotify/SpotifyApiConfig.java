@@ -29,7 +29,6 @@ public class SpotifyApiConfig {
             e.printStackTrace();
             throw new RuntimeException("Failed to retrieve access token", e);
         }
-
         return spotifyApi;
     }
 }
