@@ -17,6 +17,7 @@ import java.util.EnumMap;
 
 public class PlayList {
     @Id @GeneratedValue
+    @Column(name = "playlist_id")
     private Long id;
 
     @ManyToOne

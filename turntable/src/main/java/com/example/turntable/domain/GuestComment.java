@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 
 public class GuestComment {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "guest_comment_id")
     private Long id;
 
     @ManyToOne
