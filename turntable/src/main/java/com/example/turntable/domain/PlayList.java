@@ -14,6 +14,7 @@ import java.util.EnumMap;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "playlist")
 
 public class PlayList {
     @Id @GeneratedValue
