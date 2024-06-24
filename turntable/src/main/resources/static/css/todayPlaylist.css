@@ -1,0 +1,200 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.content-box {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 중앙 정렬 */
+  color:black;
+}
+
+.hidden {
+  display: none;
+}
+
+.playlist-header {
+  display: flex;
+  align-items: center;
+  width: 100%; /* 중앙 정렬을 위해 전체 폭 사용 */
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background-color: #45a049;
+}
+
+.search-section {
+  display: flex;
+  justify-content: center; /* 왼쪽 정렬 */
+  margin: 20px 0;
+  width: 100%; /* 중앙 정렬을 위해 전체 폭 사용 */
+  padding: 0 20px; /* 좌우 여백 추가 */
+}
+
+.search-box {
+  position: relative;
+  width: 28%;
+  margin-right: 20px; /* 입력 폼 사이 간격 */
+  display: flex; /* 버튼과 함께 배치하기 위해 flex 사용 */
+  align-items: center;
+}
+
+.search-box input {
+  width: calc(100%); /* 버튼 공간을 제외한 너비 */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px; /* 왼쪽 모서리만 둥글게 */
+  padding-left: 30px; /* 아이콘 공간 확보 */
+}
+
+.search-box i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+.search-results {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.result-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.result-item:hover {
+  background: #f0f0f0;
+}
+
+.selected-section {
+  display: flex;
+  justify-content: center; /* 왼쪽 정렬 */
+  margin: 20px 0;
+  width: 100%; /* 중앙 정렬을 위해 전체 폭 사용 */
+  padding: 0 20px; /* 좌우 여백 추가 */
+}
+
+.selected-category {
+  width: 28%;
+  margin-right: 20px; /* 카테고리 사이 간격 */
+}
+
+.selected-category h3 {
+  margin-bottom: 10px;
+}
+
+.selected-item {
+  background: pink;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.recommend-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.recommend-button:hover {
+  background: #45a049;
+}
+
+.selected-category h3 {
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.selected-category h3 + hr {
+  margin-top: 0;
+  border: 0;
+  border-top: 1px solid #ccc;
+  width: 100%;
+}
+
+.hidden{
+  display: none;
+}
+
+.recommendations-section {
+  margin-top: 20px;
+  display: none; /* 추천 플레이리스트는 처음에 숨김 */
+  text-align: left;
+}
+
+.recommendation-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.track-title {
+  font-weight: bold;
+  color:black;
+}
+
+.track-artist {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.save-playlist-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-playlist-button:hover {
+  background-color: #45a049;
+}

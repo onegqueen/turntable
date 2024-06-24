@@ -1,0 +1,262 @@
+@font-face {
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Serif", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+      "wdth" 100;
+}
+
+.container {
+  font-family: "Noto Sans KR", sans-serif;
+  text-align: center;
+  position: relative;
+  top: 20%;
+}
+
+.playlist-info {
+  background: rgba(255, 255, 255, 0.7);
+  color:#000000;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px auto;
+  width: 60%;
+  cursor: pointer; /* 클릭 가능하도록 포인터 변경 */
+  transition: background-color 0.3s ease; /* 부드러운 전환 효과 추가 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.playlist-info:hover {
+  background: rgba(255, 255, 255, 0.5); /* hover 시 배경색 진하게 변경 */
+}
+
+.icon-commentinfo{
+  display: flex;
+  font-size: 25px;
+}
+
+.message {
+  font-size: 14px;
+}
+
+.music-icon {
+  font-size: 25px; /* 음악 아이콘 크기 */
+  margin-right: 15px;
+}
+
+.song-info {
+  font-size: 12px;
+  color: #000000;
+  text-align: left;
+}
+
+.username {
+  font-family:"Noto Serif" ;
+  font-size: 100px;
+  margin: 20px 0;
+}
+
+.playlist-button {
+  background-color: #ff8c8c;
+  border: none;
+  color: white;
+  padding: 20px 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
+  margin: 4px 4px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.playlist-button:hover{
+  background-color: #ff6262;
+}
+
+.comments {
+  margin-top: 20px;
+}
+
+.comment {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px auto;
+  width: 60%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  color:#000000;
+}
+
+.comment-date {
+  background-color: #000000;
+  display: flex;
+  justify-content: end;
+  font-size: 12px;
+  text-align: right;
+}
+
+.comment-left{
+  display: flex;
+  text-align: left;
+}
+.comment-right{
+  text-align: left;
+}
+.comment-icon {
+  margin-right: 10px;
+  font-size: 30px; /* 댓글 아이콘 크기 */
+  color: #ff6868;
+}
+
+.input-section-container {
+  display: flex;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  height: 100%; /* 부모 요소가 차지하는 높이 설정 */
+  width: 100%;
+}
+
+.input-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 60%;
+}
+
+
+.input-field {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  margin-right: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-field:focus {
+  border-color: #ff6868;
+}
+
+.submit-button {
+  padding: 20px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #ff8a8a; /* 등록 버튼 색상 */
+  color: white;
+  margin-right:10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+.submit-button:hover {
+  background-color: #ff6262
+}
+
+.settings-drawer {
+  position: fixed;
+  right: -300px;
+  top: 60px;
+  width: 300px;
+  height: calc(80% - 60px);
+  background: rgba(255, 255, 255, 0.9);
+  color: black;
+  transition: right 0.3s ease;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  overflow-y: auto;
+}
+
+.settings-drawer.open {
+  right: 0;
+}
+
+.drawer-content {
+  padding: 20px;
+}
+
+.drawer-content ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.drawer-content ul li {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.drawer-content ul li:hover {
+  color: #4CAF50;
+}
+
+.playlist-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.3s ease;
+  flex-direction: column; /* 변경: flex-direction을 column으로 설정 */
+}
+
+.playlist-item i {
+  margin-right: 10px;
+}
+
+
+.playlist-item .item-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.playlist-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.item-left{
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+
+.madeby{
+  font-size: 11px;
+}
+
+.playlist-details {
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.song-item {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  margin-left: 10px; /* 추가된 노래 항목을 왼쪽으로 오프셋 */
+}
+
+.song-item i {
+  margin-right: 10px;
+}

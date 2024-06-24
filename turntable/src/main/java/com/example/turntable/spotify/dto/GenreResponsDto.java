@@ -5,8 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SongResponseDto {
-    private String id;
+public class GenreResponsDto {
     private String name;
-    private String artistName;
 }

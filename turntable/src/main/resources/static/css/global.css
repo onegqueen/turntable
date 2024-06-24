@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('./bgimg/기본배경화면.jpg');
+  background-size: cover;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 1;
+}
+
+.header, .footer {
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.top-bar i {
+  margin: 0 10px;
+  font-size: 24px;
+}
+.top-bar i:hover {
+  color: pink; /* hover 시 배경색 진하게 변경 */
+}
+
+.user-icon {
+  font-size: 20px;
+}
+
+.home-icon {
+  font-size: 24px;
+}
+
+.settings-icon {
+  font-size: 28px;
+}
