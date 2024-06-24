@@ -1,11 +1,16 @@
 package com.example.turntable.spotify;
 
 import com.example.turntable.spotify.dto.ArtistResponseDto;
+import com.example.turntable.spotify.dto.GenreResponsDto;
+import com.example.turntable.spotify.dto.RecommendRequestDto;
 import com.example.turntable.spotify.dto.TrackResponseDto;
 import com.wrapper.spotify.SpotifyApi;
 import com.wrapper.spotify.model_objects.specification.Artist;
 import com.wrapper.spotify.model_objects.specification.Paging;
+import com.wrapper.spotify.model_objects.specification.Recommendations;
 import com.wrapper.spotify.model_objects.specification.Track;
+import com.wrapper.spotify.model_objects.specification.TrackSimplified;
+import com.wrapper.spotify.requests.data.browse.GetRecommendationsRequest;
 import com.wrapper.spotify.requests.data.browse.miscellaneous.GetAvailableGenreSeedsRequest;
 import com.wrapper.spotify.requests.data.search.simplified.SearchArtistsRequest;
 import com.wrapper.spotify.requests.data.search.simplified.SearchTracksRequest;
@@ -53,7 +58,6 @@ public class SpotifyService {
 
     public List<ArtistResponseDto>searchArtist(String keyword){
         SearchArtistsRequest searchArtistsRequest = spotifyApi.searchArtists(keyword).build();
-
         try{
              Paging<Artist> artistPaging = searchArtistsRequest.execute();
              Artist[] artists = artistPaging.getItems();
@@ -70,14 +74,62 @@ public class SpotifyService {
         }
     }
 
-    public List<String> searchGenre(){
+    public List<GenreResponsDto> searchGenre(){
         GetAvailableGenreSeedsRequest getAvailableGenreSeedsRequest = spotifyApi.getAvailableGenreSeeds().build();
         try{
             String[] genres = getAvailableGenreSeedsRequest.execute();
-            return Arrays.asList(genres);
+            return Arrays.stream(genres).map(genre -> {
+                GenreResponsDto genreResponsDto = new GenreResponsDto();
+                genreResponsDto.setName(genre);
+                return genreResponsDto;
+            }).collect(Collectors.toList());
         }catch (Exception e){
             e.printStackTrace();
             throw new RuntimeException("Failed to search genres", e);
         }
+    }
+
+    public List<TrackResponseDto> getRecommends(RecommendRequestDto recommendRequestDto){
+        if (recommendRequestDto.getSeedArtists() == null || recommendRequestDto.getSeedGenres() == null || recommendRequestDto.getSeedTracks() == null) {
+            throw new IllegalArgumentException("Seed artists, genres, and tracks must not be null");
+        }
+
+        String seedArtistsStr = String.join(",", recommendRequestDto.getSeedArtists());
+        String seedGenresStr = String.join(",", recommendRequestDto.getSeedGenres());
+        String seedTracksStr = String.join(",", recommendRequestDto.getSeedTracks());
+
+        GetRecommendationsRequest getRecommendationsRequest = spotifyApi.getRecommendations()
+            .seed_artists(seedArtistsStr)
+            .seed_genres(seedGenresStr)
+            .seed_tracks(seedTracksStr)
+            .limit(10)
+            .build();
+
+        System.out.println("Seed Artists: " + seedArtistsStr);
+        System.out.println("Seed Tracks: " + seedTracksStr);
+        System.out.println("Seed Genres: " + seedGenresStr);
+
+        try{
+            Recommendations recommendations = getRecommendationsRequest.execute();
+            TrackSimplified[] tracks = recommendations.getTracks();
+            return getTrackList(tracks);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException("Failed to search recommendations", e);
+        }
+
+    }
+
+    public List<TrackResponseDto> getTrackList(TrackSimplified[] tracks){
+        return Arrays.stream(tracks).map(track -> {
+            TrackResponseDto trackResponseDto = new TrackResponseDto();
+            trackResponseDto.setId(track.getId());
+            trackResponseDto.setName(track.getName());
+
+            trackResponseDto.setArtists(Arrays.stream(track.getArtists()).map(artist -> {
+                return artist.getName();
+            }).collect(Collectors.toList()));
+            return trackResponseDto;
+        }).collect(Collectors.toList());
     }
 }
