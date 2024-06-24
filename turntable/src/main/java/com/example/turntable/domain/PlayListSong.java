@@ -22,9 +22,8 @@ public class PlayListSong {
     @JoinColumn(name = "playlist_id")
     private PlayList playlist;
 
-    @ManyToOne
-    @JoinColumn(name = "spotify_song_id")
-    private SpotifySong spotifySong;
+    @Column(name = "spotify_song_id")
+    private String spotifySongId;
 
 
 }
