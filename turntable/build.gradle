@@ -30,6 +30,7 @@ dependencies {
 	implementation 'org.springframework.session:spring-session-core'
 	implementation "com.h2database:h2"
 	implementation 'com.github.thelinmichael:spotify-web-api-java:2.1.0'
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 	compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
