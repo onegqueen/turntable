@@ -21,6 +21,7 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
 dependencies {
@@ -28,8 +29,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.session:spring-session-core'
 	implementation "com.h2database:h2"
-	implementation 'com.github.thelinmichael:spotify-web-api-java:master-SNAPSHOT'
-
+	implementation 'com.github.thelinmichael:spotify-web-api-java:2.1.0'
+	compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -46,4 +49,16 @@ allprojects {
 		mavenCentral()
 		maven { url "https://jitpack.io" }
 	}
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+bootJar {
+	enabled = true
+}
+
+jar {
+	enabled = false
 }

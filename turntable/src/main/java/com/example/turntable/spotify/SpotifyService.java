@@ -1,6 +1,7 @@
 package com.example.turntable.spotify;
 
 import com.example.turntable.spotify.dto.ArtistResponseDto;
+import com.example.turntable.spotify.dto.GenreResponsDto;
 import com.example.turntable.spotify.dto.RecommendRequestDto;
 import com.example.turntable.spotify.dto.TrackResponseDto;
 import com.wrapper.spotify.SpotifyApi;
@@ -73,11 +74,15 @@ public class SpotifyService {
         }
     }
 
-    public List<String> searchGenre(){
+    public List<GenreResponsDto> searchGenre(){
         GetAvailableGenreSeedsRequest getAvailableGenreSeedsRequest = spotifyApi.getAvailableGenreSeeds().build();
         try{
             String[] genres = getAvailableGenreSeedsRequest.execute();
-            return Arrays.asList(genres);
+            return Arrays.stream(genres).map(genre -> {
+                GenreResponsDto genreResponsDto = new GenreResponsDto();
+                genreResponsDto.setName(genre);
+                return genreResponsDto;
+            }).collect(Collectors.toList());
         }catch (Exception e){
             e.printStackTrace();
             throw new RuntimeException("Failed to search genres", e);
@@ -100,7 +105,9 @@ public class SpotifyService {
             .limit(10)
             .build();
 
-        System.out.println("Seed Artists: " + recommendRequestDto.getSeedArtists().toString());
+        System.out.println("Seed Artists: " + seedArtistsStr);
+        System.out.println("Seed Tracks: " + seedTracksStr);
+        System.out.println("Seed Genres: " + seedGenresStr);
 
         try{
             Recommendations recommendations = getRecommendationsRequest.execute();
@@ -108,7 +115,7 @@ public class SpotifyService {
             return getTrackList(tracks);
         }catch (Exception e){
             e.printStackTrace();
-            throw new RuntimeException("Failed to search genres", e);
+            throw new RuntimeException("Failed to search recommendations", e);
         }
 
     }
