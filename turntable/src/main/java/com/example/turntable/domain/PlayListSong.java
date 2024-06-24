@@ -22,9 +22,9 @@ public class PlayListSong {
     @JoinColumn(name = "playlist_id")
     private PlayList playlist;
 
-    @Column(nullable = false)
-
-    private String spotifySongId;
+    @ManyToOne
+    @JoinColumn(name = "spotify_song_id")
+    private SpotifySong spotifySong;
 
 
 }
