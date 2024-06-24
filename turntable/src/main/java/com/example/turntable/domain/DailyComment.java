@@ -29,6 +29,9 @@ public class DailyComment {
     @Column(name = "comment", nullable = false)
     private String comment;
 
+    @Column(name = "spotify_song_id")
+    private String spotifySongId;
+
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;

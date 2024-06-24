@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class YoutubeSong {
     @Id
-    private Integer spotifySongId;
+    private String spotifySongId;
 
     @Column(nullable = false)
     private String youtubeUrl;

@@ -23,7 +23,8 @@ public class PlayListSong {
     private PlayList playlist;
 
     @Column(nullable = false)
-    private Integer spotifySongId;
+
+    private String spotifySongId;
 
 
 }
