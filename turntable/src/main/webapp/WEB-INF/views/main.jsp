@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,9 +14,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playwrite+IS:wght@100..400&display=swap" rel="stylesheet">
 </head>
 <body>
+<jsp:include page="background.jsp" />
 <div class="container">
-    <div id="header-placeholder"></div>
-
     <div id="main-content">
         <div class="playlist-info" id="loadNextScreen">
             <div class="icon-commentinfo">
@@ -65,20 +63,9 @@
             <!-- 플레이리스트 아이템들이 여기에 동적으로 로드됩니다 -->
         </div>
     </div>
+</div>
 
-    <script>
-      $(function(){
-        $("#header-placeholder").load("header.jsp", function() {
-          document.getElementById("home-icon").addEventListener("click", function() {
-            window.location.href = "/main";
-          });
-          document.getElementById("settings-icon").addEventListener("click", function() {
-            document.getElementById("settings-drawer").classList.toggle("open");
-          });
-        });
-        $("#footer-placeholder").load("footer.html");
-      });
-
+<script>
       document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("loadNextScreen").addEventListener("click", function() {
           window.location.href = "/comment";
@@ -176,7 +163,6 @@
 
 
       //todayplaylist
-
       function setupSearch(type) {
         const searchInput = document.getElementById(`${type}-search`);
         const resultsContainer = document.getElementById(`${type}-results`);

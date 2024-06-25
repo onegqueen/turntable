@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -13,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div id="header-placeholder"></div>
+<jsp:include page="background.jsp" />
 <div class="container">
     <div id="playlist-section" class="content-box">
         <div class="playlist-header">
