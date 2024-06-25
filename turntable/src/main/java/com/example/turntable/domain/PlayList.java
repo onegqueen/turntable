@@ -17,7 +17,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "playlist")
-
 public class PlayList {
     @Id @GeneratedValue
     @Column(name = "playlist_id")
