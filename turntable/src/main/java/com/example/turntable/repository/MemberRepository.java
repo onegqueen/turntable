@@ -1,4 +1,4 @@
-package com.example.turntable;
+package com.example.turntable.repository;
 
 import com.example.turntable.domain.Member;
 import java.util.Optional;
