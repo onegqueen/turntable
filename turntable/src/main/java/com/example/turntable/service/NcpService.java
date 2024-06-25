@@ -22,6 +22,7 @@ public class NcpService {
     @Value("${cloud.aws.credentials.bucket}")
     private String bucketName;
 
+    /*이미지를 얻음*/
     public byte[] getImgObject(String key) throws IOException {
         S3Object object = amazonS3.getObject(bucketName, key);
         S3ObjectInputStream objectInputStream = object.getObjectContent();
@@ -36,6 +37,7 @@ public class NcpService {
         return byteArrayOutputStream.toByteArray();
     }
 
+    /*이미지 업로드 후 url 반환*/
     public String uploadFile(MultipartFile file) throws IOException {
         if (file!=null){
             String uniqueFileName = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();

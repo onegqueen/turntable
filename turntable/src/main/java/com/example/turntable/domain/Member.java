@@ -1,6 +1,5 @@
 package com.example.turntable.domain;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +8,9 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
@@ -30,8 +29,10 @@ public class Member {
     @Column(name = "back_ground_image")
     private String backGroundImage;
 
+
     public void changeNickname(final String newNickname) {
         this.name = newNickname;
     }
+    public void changeBackGroundImage(final String newBackGroundImage) {this.backGroundImage=newBackGroundImage;}
 
 }
