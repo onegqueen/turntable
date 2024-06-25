@@ -36,3 +36,7 @@ out/
 ### VS Code ###
 .vscode/
 
+### spring ###
+application.properties
+build.gradle
+
