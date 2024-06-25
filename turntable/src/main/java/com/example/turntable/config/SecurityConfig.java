@@ -20,21 +20,13 @@ public class SecurityConfig{
         http
             .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
-                    .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**"))
-                    .permitAll()  // H2 콘솔 경로 허용
+                    .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
+                    .requestMatchers("/signup").permitAll()
                     .anyRequest().authenticated()
-            )
-            .formLogin(formLogin ->
-                formLogin
-                    .loginPage("/login")
-                    .permitAll()
-            )
-            .logout(logout ->
-                logout
-                    .permitAll()
             )
             .csrf(csrf -> csrf
                     .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**"))
+                    .ignoringRequestMatchers("/signup") // 회원가입 경로에 대한 CSRF 비활성화
                 // H2 콘솔 경로에 대한 CSRF 비활성화
             )
             .headers(headers -> headers

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class MemberService {
     private final MemberRepository memberRepository;
     private final NcpService ncpService;
