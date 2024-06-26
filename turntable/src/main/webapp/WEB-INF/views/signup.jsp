@@ -14,6 +14,10 @@
         <h2>회원가입</h2>
         <form id="signup-form" action="/signup" method="post" enctype="multipart/form-data">
             <div class="form-group">
+                <label for="name">이름:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
                 <label for="username">아이디:</label>
                 <input type="text" id="username" name="username" required>
                 <button type="button" id="check-username">중복확인</button>
@@ -29,8 +33,8 @@
                 <span id="password-message"></span>
             </div>
             <div class="form-group">
-                <label for="background-image">배경화면 업로드:</label>
-                <input type="file" id="background-image" name="background-image" accept="image/*" required>
+                <label for="bgImg">배경화면 업로드:</label>
+                <input type="file" id="bgImg" name="bgImg" accept="image/*" required>
             </div>
             <button type="submit">회원가입</button>
         </form>
@@ -39,6 +43,10 @@
 
 <script>
   $(document).ready(function() {
+    $('#username').on('input', function() {
+      $('#username-message').text('');
+    });
+
     $('#check-username').click(function() {
       const username = $('#username').val();
       $.ajax({

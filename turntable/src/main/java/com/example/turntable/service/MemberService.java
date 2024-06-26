@@ -4,6 +4,7 @@ import com.example.turntable.domain.Member;
 import com.example.turntable.dto.SignupRequestDto;
 import com.example.turntable.repository.MemberRepository;
 import java.io.IOException;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,12 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public void create(SignupRequestDto signupRequestDto) throws IOException {
+    public boolean create(SignupRequestDto signupRequestDto) throws IOException {
+        Optional<Member> existingUser = memberRepository.findByName(signupRequestDto.getName());
+        if (existingUser.isPresent()) {
+            return false;
+        }
+
         final Member member = Member.builder()
             .name(signupRequestDto.getName())
             .nickname(signupRequestDto.getNickname())
@@ -26,5 +32,10 @@ public class MemberService {
             .backGroundImage(ncpService.uploadFile(signupRequestDto.getBgImg()))
             .build();
         memberRepository.save(member);
+        return true;
+    }
+
+    public boolean isUsernameExist(String username) {
+        return memberRepository.findByName(username).isEmpty();
     }
 }
