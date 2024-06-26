@@ -28,4 +28,9 @@ public class TurntableApplication {
 	public String loginForm() {
 		return "login";
 	}
+
+	@GetMapping("/signup")
+	public String signupForm() {
+		return "signup";
+	}
 }
