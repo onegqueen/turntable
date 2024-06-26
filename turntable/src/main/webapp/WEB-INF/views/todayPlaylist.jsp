@@ -96,6 +96,9 @@
     $(".recommend-button").click(function() {
       submitRecommendations();
     });
+    $(".save-playlist-button").click(function() {
+        savePlaylist();
+    });
   });
 
   function setupSearch(type) {
@@ -242,6 +245,7 @@
     recommendations.forEach(function(track) {
       var trackItem = document.createElement('div');
       trackItem.classList.add('recommendation-item');
+      trackItem.dataset.spotifySongId = track.id;
 
       var trackInfo = document.createElement('div');
       trackInfo.classList.add('track-info');
@@ -268,6 +272,40 @@
     document.getElementById('recommend-select').style.display = 'none'; // 항목 선택 섹션 숨김
     document.getElementById('recommendations-section').style.display = 'block';
   }
+
+  function savePlaylist() {
+      const recommendedTracks = Array.from(document.querySelectorAll('.recommendation-item')).map(item => {
+          return {
+              id: item.dataset.spotifySongId,
+              name: item.querySelector('.track-title').textContent,
+              artists: item.querySelector('.track-artist').textContent.split(', '),
+              albumName: item.querySelector('.track-album').textContent
+          };
+      });
+
+      const playlistData = {
+          name: "Today's Playlist", // 예시로 이름 지정, 필요시 동적으로 설정
+          tracks: recommendedTracks
+      };
+
+      console.log("Submitting playlist with data:", playlistData);
+
+      $.ajax({
+          url: '/api/playlists/1', // 1은 회원 ID로, 실제 구현에서는 동적으로 설정
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(playlistData),
+          success: function(response) {
+              console.log("Playlist saved successfully:", response);
+              alert("플레이리스트가 성공적으로 저장되었습니다!");
+          },
+          error: function(xhr, status, error) {
+              console.error(`Error: ${status}, ${error}`);
+              alert("플레이리스트 저장 중 오류가 발생했습니다.");
+          }
+      });
+  }
+
 </script>
 </body>
 </html>
