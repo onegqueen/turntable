@@ -31,8 +31,7 @@ public class ncpController {
     }
 
     @GetMapping("/imgurl")
-    public ResponseEntity<String> getUserImageUrl() {
-        String imageUrl = "https://kr.object.ncloudstorage.com/turntable-bgimg/%EA%B8%B0%EB%B3%B8%EB%B0%B0%EA%B2%BD%ED%99%94%EB%A9%B42.jpg";
+    public ResponseEntity<String> getUserImageUrl(String imageUrl) {
         return ResponseEntity.ok(imageUrl);
     }
 }

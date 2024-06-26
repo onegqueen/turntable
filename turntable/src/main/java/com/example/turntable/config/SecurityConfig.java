@@ -18,22 +18,21 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests(authorizeRequests ->
-                authorizeRequests
-                    .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
-                    .requestMatchers("/signup").permitAll()
-                    .anyRequest().authenticated()
-            )
-            .csrf(csrf -> csrf
-                    .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**"))
-                    .ignoringRequestMatchers("/signup") // 회원가입 경로에 대한 CSRF 비활성화
-                // H2 콘솔 경로에 대한 CSRF 비활성화
-            )
-            .headers(headers -> headers
+            .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
+                .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
+            .csrf((csrf) -> csrf
+                .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")))
+            .headers((headers) -> headers
                 .addHeaderWriter(new XFrameOptionsHeaderWriter(
-                    XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN
-                ))  // H2 콘솔이 iframe으로 열리기 때문에 sameOrigin 설정 필요
-            );
+                    XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
+            .formLogin((formLogin) -> formLogin
+                .loginPage("/login")
+                .defaultSuccessUrl("/main"))
+            .logout((logout) -> logout
+                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+                .logoutSuccessUrl("/main")
+                .invalidateHttpSession(true))
+        ;
         return http.build();
     }
 
