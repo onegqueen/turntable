@@ -13,9 +13,9 @@ public class PlayListController {
 
     private final PlayListService playListService;
 
-    @PostMapping("/{memberId}")
-    public ResponseEntity<Void> savePlayList(@PathVariable Long memberId, @RequestBody PlayListDto playListDto) {
-        playListService.savePlayList(memberId, playListDto);
+    @PostMapping("/{username}")
+    public ResponseEntity<Void> savePlayList(@PathVariable String username, @RequestBody PlayListDto playListDto) {
+        playListService.savePlayList(username, playListDto);
         return ResponseEntity.ok().build();
     }
 }

@@ -26,8 +26,8 @@ public class PlayListService {
     private final PlayListSongRepository playListSongRepository;
 
     @Transactional
-    public PlayList savePlayList(Long memberId, PlayListDto playListDto) {
-        Member member = memberRepository.findById(memberId)
+    public PlayList savePlayList(String username, PlayListDto playListDto) {
+        Member member = memberRepository.findByName(username)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid member ID"));
 
         PlayList playList = PlayList.builder()
@@ -48,8 +48,6 @@ public class PlayListService {
                 .collect(Collectors.toList());
 
         playListSongRepository.saveAll(playListSongs);
-
-        playList.getPlayListSongs().addAll(playListSongs);
 
         return playList;
     }

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="header.jsp"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -13,6 +14,7 @@
 </head>
 <body>
 <jsp:include page="background.jsp" />
+
 <div class="container">
     <div id="playlist-section" class="content-box">
         <div class="playlist-header">
@@ -69,6 +71,9 @@
 
 <script>
   $(document).ready(function() {
+      const username = "<%= username %>";
+      console.log(username);
+
     $("#header-placeholder").load("header.jsp", function() {
       $("#home-icon").click(function() {
         window.location.href = "/main";
@@ -283,6 +288,8 @@
           };
       });
 
+
+
       const playlistData = {
           name: "Today's Playlist", // 예시로 이름 지정, 필요시 동적으로 설정
           tracks: recommendedTracks
@@ -291,7 +298,7 @@
       console.log("Submitting playlist with data:", playlistData);
 
       $.ajax({
-          url: '/api/playlists/1', // 1은 회원 ID로, 실제 구현에서는 동적으로 설정
+          url: '/api/playlists/${username}', // 1은 회원 ID로, 실제 구현에서는 동적으로 설정
           method: 'POST',
           contentType: 'application/json',
           data: JSON.stringify(playlistData),
