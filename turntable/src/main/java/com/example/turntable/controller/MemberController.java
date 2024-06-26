@@ -23,7 +23,7 @@ public class MemberController {
     @PostMapping("/signup")
     public String signup(@ModelAttribute SignupRequestDto signupRequestDto) throws IOException {
         if (memberService.create(signupRequestDto)){
-            return "회원가입이 완료되었습니다.";
+            return "redirect:/login";
         }
         else{
             return "회원가입 실패";
