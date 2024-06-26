@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,25 +15,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RequiredArgsConstructor
-@RestController
+@Controller
 public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/signup")
-    public String signup(@ModelAttribute SignupRequestDto signupRequestDto) throws IOException {
+    public String signup(@ModelAttribute SignupRequestDto signupRequestDto, RedirectAttributes redirectAttributes) throws IOException {
         if (memberService.create(signupRequestDto)){
             return "redirect:/login";
         }
         else{
             return "회원가입 실패";
         }
-    }
-
-    @PostMapping("/loginform")
-    public String login(){
-        return "login";
     }
 
     @GetMapping("/check-username")

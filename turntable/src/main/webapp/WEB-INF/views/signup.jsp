@@ -34,7 +34,7 @@
             </div>
             <div class="form-group">
                 <label for="bgImg">배경화면 업로드:</label>
-                <input type="file" id="bgImg" name="bgImg" accept="image/*" required>
+                <input type="file" id="bgImg" name="bgImg" accept="image/*">
             </div>
             <button type="submit">회원가입</button>
         </form>
