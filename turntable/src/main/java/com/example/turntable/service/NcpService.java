@@ -46,6 +46,7 @@ public class NcpService {
             return amazonS3.getUrl(bucketName,uniqueFileName).toString();
         }
         else{
+            System.out.println("*************이미지 null");
             return null;
         }
     }

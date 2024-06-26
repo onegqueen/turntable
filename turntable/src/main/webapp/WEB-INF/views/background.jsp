@@ -26,6 +26,7 @@
 
   $(document).ready(function() {
     const username = "<%= username %>";
+    console.log(username);
 
     fetch('/imgurl', {
       method: 'GET',
