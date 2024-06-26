@@ -38,4 +38,9 @@ public class MemberService {
     public boolean isUsernameExist(String username) {
         return memberRepository.findByName(username).isEmpty();
     }
+
+    public String getUserBgImg(String username) {
+        Optional<Member> member = memberRepository.findByName(username);
+        return member.get().getBackGroundImage();
+    }
 }

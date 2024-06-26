@@ -2,11 +2,13 @@ package com.example.turntable.controller;
 
 import com.example.turntable.dto.SignupRequestDto;
 import com.example.turntable.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,10 +36,18 @@ public class MemberController {
 
     @GetMapping("/check-username")
     @ResponseBody
-    public ResponseEntity<Map<String,Boolean>> checkUsername(@RequestParam("username") String username){
+    public ResponseEntity<Map<String,Boolean>> checkUsername(@RequestParam("name") String username){
         boolean available = memberService.isUsernameExist(username);
         Map<String,Boolean> response = new HashMap<>();
         response.put("available", available);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/login-success")
+    public String loginSuccess(HttpSession session) {
+        // 로그인 성공 시 세션에 사용자 이름 저장
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        session.setAttribute("username", username);
+        return "redirect:/main";
     }
 }
