@@ -36,7 +36,7 @@ public class MemberController {
 
     @GetMapping("/check-username")
     @ResponseBody
-    public ResponseEntity<Map<String,Boolean>> checkUsername(@RequestParam("username") String username){
+    public ResponseEntity<Map<String,Boolean>> checkUsername(@RequestParam("name") String username){
         boolean available = memberService.isUsernameExist(username);
         Map<String,Boolean> response = new HashMap<>();
         response.put("available", available);

@@ -14,12 +14,12 @@
         <h2>회원가입</h2>
         <form id="signup-form" action="/signup" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="name">이름:</label>
-                <input type="text" id="name" name="name" required>
+                <label for="nickname">이름:</label>
+                <input type="text" id="nickname" name="nickname" required>
             </div>
             <div class="form-group">
-                <label for="username">아이디:</label>
-                <input type="text" id="username" name="username" required>
+                <label for="name">아이디:</label>
+                <input type="text" id="name" name="name" required>
                 <button type="button" id="check-username">중복확인</button>
                 <span id="username-message"></span>
             </div>
@@ -48,11 +48,11 @@
     });
 
     $('#check-username').click(function() {
-      const username = $('#username').val();
+      const name = $('#name').val();
       $.ajax({
         url: '/check-username',
         method: 'GET',
-        data: { username: username },
+        data: { name: name },
         success: function(response) {
           if (response.available) {
             $('#username-message').text('사용 가능한 아이디입니다.').css('color', 'green');

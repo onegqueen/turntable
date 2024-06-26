@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String username = (String) session.getAttribute("username");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,6 +15,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playwrite+IS:wght@100..400&display=swap" rel="stylesheet">
+    <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+        const username = "<%= username %>";
+        console.log("Username from session: " + username); // 콘솔에 출력
+        document.querySelector('.username-container').textContent = "@" + username;
+      });
+    </script>
 </head>
 <body>
 <jsp:include page="background.jsp" />
@@ -28,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="username">@codnjs_99</div>
+        <div class="username-container" ></div>
         <button class="playlist-button" id="todayPlaylistBtn"><i class="fa-solid fa-compact-disc" id="settings-icon"></i>Today Playlist</button>
 
         <div class="input-section-container">
@@ -74,6 +84,7 @@
         document.getElementById("todayPlaylistBtn").addEventListener("click", function() {
           window.location.href = "/todayplaylist";
         });
+
 
         setupSearch('artist');
         setupSearch('genre');
