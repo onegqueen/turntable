@@ -32,7 +32,7 @@ public class ncpController {
 
     @GetMapping("/imgurl")
     public ResponseEntity<String> getUserImageUrl(String imageUrl) {
-        return ResponseEntity.ok(imageUrl);
+        return ResponseEntity.ok("imageUrl");
     }
 }
 

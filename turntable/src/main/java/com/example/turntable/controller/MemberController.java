@@ -19,4 +19,9 @@ public class MemberController {
         memberService.create(signupRequestDto);
         return "회원가입이 완료되었습니다.";
     }
+
+    @PostMapping("/loginform")
+    public String login(){
+        return "login";
+    }
 }
