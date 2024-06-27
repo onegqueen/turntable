@@ -1,6 +1,9 @@
 <%
     String username = (String) session.getAttribute("username");
 %>
+<%
+    Long userId = (Long) session.getAttribute("userId");
+%>
 <div class="header">
     <div class="top-bar">
         <i class="fas fa-user user-icon"></i>
@@ -10,4 +13,5 @@
 </div>
 <script>
   const username = "<%= username %>";
+  const userId="<%= userId %>";
 </script>

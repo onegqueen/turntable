@@ -33,4 +33,9 @@ public class TurntableApplication {
 	public String signupForm() {
 		return "signup";
 	}
+
+	@GetMapping("/comment")
+	public String commentForm() {
+		return "comment";
+	}
 }
