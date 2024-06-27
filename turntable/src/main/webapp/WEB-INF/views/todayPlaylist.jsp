@@ -109,7 +109,6 @@
   function setupSearch(type) {
     console.log(type)
     const searchInput = document.getElementById(type+`-search`);
-    //const searchButton = document.getElementById(`search-`+type+`-btn`);
     const resultsContainer = document.getElementById(type+`-results`);
     const selectedContainer = document.getElementById(`selected-`+type+`s`);
 

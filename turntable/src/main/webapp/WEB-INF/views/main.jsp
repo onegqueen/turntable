@@ -84,11 +84,6 @@
         document.getElementById("todayPlaylistBtn").addEventListener("click", function() {
           window.location.href = "/todayplaylist";
         });
-
-
-        setupSearch('artist');
-        setupSearch('genre');
-        setupSearch('track');
       });
 
       // 이벤트 위임을 사용하여 동적으로 생성된 playlist-item에 이벤트 리스너 추가
@@ -170,39 +165,6 @@
 
         // 상세 목록을 클릭된 항목 아래에 추가
         item.insertAdjacentElement("afterend", details);
-      }
-
-
-      //todayplaylist
-      function setupSearch(type) {
-        const searchInput = document.getElementById(`${type}-search`);
-        const resultsContainer = document.getElementById(`${type}-results`);
-        const selectedContainer = document.getElementById(`selected-${type}s`);
-
-        searchInput.addEventListener("input", function() {
-          const query = searchInput.value.toLowerCase();
-          resultsContainer.innerHTML = ''; // 기존 결과 초기화
-
-          // 예시 데이터로 필터링 (여기서는 간단히 고정된 데이터 사용)
-          const sampleData = type === 'artist' ? ['권진아', '백예린', '안지영'] :
-              type === 'genre' ? ['인디음악', '힙합', '발라드'] :
-                  ['나무', 'painkiller', '위로'];
-
-          const filteredData = sampleData.filter(item => item.toLowerCase().includes(query));
-          filteredData.forEach(item => {
-            const resultItem = document.createElement('div');
-            resultItem.textContent = item;
-            resultItem.classList.add('result-item');
-            resultItem.addEventListener('click', function() {
-              const selectedItem = document.createElement('div');
-              selectedItem.textContent = item;
-              selectedItem.classList.add('selected-item');
-              selectedContainer.appendChild(selectedItem);
-              resultsContainer.innerHTML = ''; // 선택 후 결과 초기화
-            });
-            resultsContainer.appendChild(resultItem);
-          });
-        });
       }
     </script>
 </body>

@@ -1,11 +1,9 @@
 package com.example.turntable.controller;
 
-import com.example.turntable.domain.Member;
 import com.example.turntable.service.MemberService;
 import com.example.turntable.service.NcpService;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import jdk.jfr.Registered;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
