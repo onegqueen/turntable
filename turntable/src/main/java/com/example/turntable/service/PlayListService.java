@@ -5,7 +5,6 @@ import com.example.turntable.domain.PlayListSong;
 import com.example.turntable.domain.Member;
 import com.example.turntable.domain.PlayListStatus;
 import com.example.turntable.dto.PlayListDto;
-// import com.example.turntable.dto.PlayListSongDto;
 import com.example.turntable.repository.PlayListRepository;
 import com.example.turntable.repository.MemberRepository;
 import com.example.turntable.repository.PlayListSongRepository;
@@ -20,7 +19,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class PlayListService {
-
     private final PlayListRepository playListRepository;
     private final MemberRepository memberRepository;
     private final PlayListSongRepository playListSongRepository;
