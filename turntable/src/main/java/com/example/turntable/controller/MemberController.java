@@ -48,6 +48,7 @@ public class MemberController {
         Long userId = memberService.getUserIdByName(username);
         session.setAttribute("username", username);
         session.setAttribute("userId",userId);
+        System.out.println(session.getAttribute("username").toString()+session.getAttribute("userId").toString());
         return "redirect:/main";
     }
 }

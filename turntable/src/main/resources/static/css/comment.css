@@ -1,0 +1,225 @@
+@font-face {
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.comment-container {
+  font-family: "Noto Sans KR", sans-serif;
+  background: rgba(255, 255, 255, 0.3); /* 하얀색 배경에 약간의 투명도 */
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+  width: 60%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.input-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  margin-right: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-field:focus {
+  border-color: #ff6868;
+}
+
+.submit-button, .song-button {
+  padding: 20px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-button:hover, .cancel-button:hover {
+  background-color: white; /* hover 시 배경색 진하게 변경 */
+  color: black;
+}
+
+.submit-button {
+  background-color: #ff8a8a; /* 등록 버튼 색상 */
+  color: white;
+  margin-right:10px;
+}
+
+.song-button {
+  background-color: #ff8a8a; /* 취소 버튼 색상 */
+  color: white;
+}
+
+.comment-info {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-align: left; /* 왼쪽 정렬 */
+
+}
+
+.icon-commentinfo{
+  color:black;
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+}
+
+.comment-message {
+  font-size: 15px;
+  text-align: left; /* 왼쪽 정렬 */
+}
+
+
+.comment-song{
+  margin-left:15px;
+}
+
+.comment-song-info {
+  font-size: 12px;
+  color: #000000; /* 텍스트 색상을 진하게 변경 */
+}
+
+.comment-date {
+  font-size: 12px;
+  color: #000000; /* 텍스트 색상을 진하게 변경 */
+  text-align: right;
+  margin-top: 10px;
+}
+
+.comments-section {
+  margin-top: 20px;
+  color: #000;
+}
+
+.comment {
+  background: rgba(255, 255, 255, 0.5); /* 하얀색 배경에 약간의 투명도 */
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.comment-icon {
+  margin-right: 10px;
+  font-size: 16px; /* 댓글 아이콘 크기 */
+}
+
+.comment-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 40px; /* .comment-song과 같은 왼쪽 정렬 */
+}
+
+.comment-count {
+  font-size: 12px;
+  color: #666;
+}
+
+.comment-date {
+  font-size: 12px;
+  color: #666;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-box i {
+  margin-right: 10px;
+}
+
+.search-box input {
+  flex-grow: 1; /* 입력 필드가 남은 공간을 채우도록 설정 */
+  width: calc(100% - 30px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #000; /* 글씨를 검정색으로 설정 */
+}
+
+.search-results {
+  margin-top: 20px;
+  color: #000; /* 글씨를 검정색으로 설정 */
+}
+
+.result-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  color: #000; /* 글씨를 검정색으로 설정 */
+}
+
+.result-item:hover {
+  background-color: #f1f1f1;
+}
+
+.selected-container {
+  margin-top: 20px;
+}
+
+.selected-item {
+  padding: 10px;
+  background-color: #d1e7dd;
+  border: 1px solid #bcd4c7;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #000; /* 글씨를 검정색으로 설정 */
+}
+
+.selected-item:hover {
+  background-color: #bcd4c7;
+}
