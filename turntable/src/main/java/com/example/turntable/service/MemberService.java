@@ -35,6 +35,10 @@ public class MemberService {
         return true;
     }
 
+    public Long getUserIdByName(String username){
+        return memberRepository.findByName(username).map(Member::getId).orElse(null);
+    }
+
     public boolean isUsernameExist(String username) {
         return memberRepository.findByName(username).isEmpty();
     }
