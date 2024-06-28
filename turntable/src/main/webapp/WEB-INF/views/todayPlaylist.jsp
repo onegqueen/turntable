@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="header.jsp"%>
+<%
+    Long usderId = (Long) session.getAttribute("userId");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -297,7 +300,7 @@
       console.log("Submitting playlist with data:", playlistData);
 
       $.ajax({
-          url: '/api/playlists/${username}', // 1은 회원 ID로, 실제 구현에서는 동적으로 설정
+          url: '/api/playlists/${userId}', // 1은 회원 ID로, 실제 구현에서는 동적으로 설정
           method: 'POST',
           contentType: 'application/json',
           data: JSON.stringify(playlistData),
