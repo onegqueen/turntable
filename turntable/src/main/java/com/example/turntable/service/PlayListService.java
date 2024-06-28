@@ -24,9 +24,9 @@ public class PlayListService {
     private final PlayListSongRepository playListSongRepository;
 
     @Transactional
-    public PlayList savePlayList(Long userId, PlayListDto playListDto) {
+    public PlayList savePlayList(Long userId, PlayListDto playListDto, PlayListStatus playListStatus) {
         Member member = getMemberById(userId);
-        PlayList playList = createPlayList(member, playListDto.getName());
+        PlayList playList = createPlayList(member, playListDto.getName(), playListStatus);
         List<PlayListSong> playListSongs = createPlayListSongs(playList, playListDto);
 
         savePlayListAndSongs(playList, playListSongs);
@@ -39,12 +39,12 @@ public class PlayListService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid member ID"));
     }
 
-    private PlayList createPlayList(Member member, String name) {
+    private PlayList createPlayList(Member member, String name, PlayListStatus playListStatus) {
         return PlayList.builder()
                 .member(member)
                 .name(name)
                 .date(LocalDate.now())
-                .state(PlayListStatus.DAILY)
+                .state(playListStatus)
                 .build();
     }
 

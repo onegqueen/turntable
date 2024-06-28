@@ -1,8 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="header.jsp"%>
-<%
-    Long usderId = (Long) session.getAttribute("userId");
-%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -283,7 +280,7 @@
   function savePlaylist() {
       const recommendedTracks = Array.from(document.querySelectorAll('.recommendation-item')).map(item => {
           return {
-              id: item.dataset.spotifySongId,
+              spotifySongId: item.dataset.spotifySongId,
               name: item.querySelector('.track-title').textContent,
               artists: item.querySelector('.track-artist').textContent.split(', '),
               albumName: item.querySelector('.track-album').textContent
@@ -300,7 +297,7 @@
       console.log("Submitting playlist with data:", playlistData);
 
       $.ajax({
-          url: '/api/playlists/${userId}', // 1은 회원 ID로, 실제 구현에서는 동적으로 설정
+          url: '/api/playlists/Daily', // 1은 회원 ID로, 실제 구현에서는 동적으로 설정
           method: 'POST',
           contentType: 'application/json',
           data: JSON.stringify(playlistData),
