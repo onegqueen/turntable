@@ -24,31 +24,42 @@ public class PlayListService {
     private final PlayListSongRepository playListSongRepository;
 
     @Transactional
-    public PlayList savePlayList(Long memberId, PlayListDto playListDto) {
-        Member member = memberRepository.findById(memberId)
+    public PlayList savePlayList(Long userId, PlayListDto playListDto, PlayListStatus playListStatus) {
+        Member member = getMemberById(userId);
+        PlayList playList = createPlayList(member, playListDto.getName(), playListStatus);
+        List<PlayListSong> playListSongs = createPlayListSongs(playList, playListDto);
+
+        savePlayListAndSongs(playList, playListSongs);
+
+        return playList;
+    }
+
+    private Member getMemberById(Long userId) {
+        return memberRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid member ID"));
+    }
 
-        PlayList playList = PlayList.builder()
+    private PlayList createPlayList(Member member, String name, PlayListStatus playListStatus) {
+        return PlayList.builder()
                 .member(member)
-                .name(playListDto.getName())
+                .name(name)
                 .date(LocalDate.now())
-                // 로직 추가에따라 수정해줘야 함!
-                .state(PlayListStatus.DAILY)
+                .state(playListStatus)
                 .build();
+    }
 
-        playListRepository.save(playList);
-
-        List<PlayListSong> playListSongs = playListDto.getTracks().stream()
+    private List<PlayListSong> createPlayListSongs(PlayList playList, PlayListDto playListDto) {
+        return playListDto.getTracks().stream()
                 .map(trackDto -> PlayListSong.builder()
                         .playlist(playList)
                         .spotifySongId(trackDto.getSpotifySongId())
                         .build())
                 .collect(Collectors.toList());
-
-        playListSongRepository.saveAll(playListSongs);
-
-        playList.getPlayListSongs().addAll(playListSongs);
-
-        return playList;
     }
+
+    private void savePlayListAndSongs(PlayList playList, List<PlayListSong> playListSongs) {
+        playListRepository.save(playList);
+        playListSongRepository.saveAll(playListSongs);
+    }
+
 }

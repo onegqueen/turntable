@@ -8,10 +8,4 @@ import lombok.Setter;
 @Setter
 public class PlayListSongDto {
     private String spotifySongId;
-
-    public static PlayListSongDto fromTrackResponseDto(TrackResponseDto trackResponseDto) {
-        PlayListSongDto playListSongDto = new PlayListSongDto();
-        playListSongDto.setSpotifySongId(trackResponseDto.getId());
-        return playListSongDto;
-    }
 }
