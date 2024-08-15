@@ -24,7 +24,7 @@ public class MemberService {
 
     @Autowired
     private MemberRepository memberRepository;
-    private final NcpService ncpService;
+    private final S3Uploader s3Uploader;
     private final PasswordEncoder passwordEncoder;
     private final PlayListService playListService;
     private final CommentService commentService;
@@ -40,7 +40,7 @@ public class MemberService {
             .name(signupRequestDto.getName())
             .nickname(signupRequestDto.getNickname())
             .password(passwordEncoder.encode(signupRequestDto.getPassword()))
-            .backGroundImage(ncpService.uploadFile(signupRequestDto.getBgImg()))
+            .backGroundImage(s3Uploader.upload(signupRequestDto.getBgImg()))
             .build();
 
         return memberRepository.save(member);
@@ -124,7 +124,7 @@ public class MemberService {
     @Transactional
     public String changeBgImg(Long userId, MultipartFile newBgImg) throws IOException {
         Member member = memberRepository.findById(userId).orElse(null);
-        String bgImgUrl = ncpService.uploadFile(newBgImg);
+        String bgImgUrl = s3Uploader.upload(newBgImg);
         member.changeBackGroundImage(bgImgUrl);
         return bgImgUrl;
     }
