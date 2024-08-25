@@ -8,6 +8,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 app = FastAPI()
 
@@ -20,10 +22,19 @@ class Song(BaseModel):
 class SongRequest(BaseModel):
     songs: List[Song]
 
+options = wb.ChromeOptions()
+options.add_argument('headless')
+options.add_argument('window-size=1920x1080')
+options.add_argument("disable-gpu")
+options.add_argument(f'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36')
+
+service = Service(executable_path=ChromeDriverManager().install())
+
+
 #json request 요청양식은 이쪽에서 정의
 @app.post("/getYoutubeUrls")
 async def get_youtube_urls(request: SongRequest):
-    driver = wb.Chrome()
+    driver = wb.Chrome(service=service, options=options)
     results = []
     for song in request.songs:
         song_id = song.songId

@@ -312,6 +312,7 @@
           success: function(response) {
               console.log("Playlist saved successfully:", response);
               alert("플레이리스트가 성공적으로 저장되었습니다!");
+              window.location.href = "/main";
           },
           error: function(xhr, status, error) {
               console.error(`Error: ${'${status}'}, ${error}`);
