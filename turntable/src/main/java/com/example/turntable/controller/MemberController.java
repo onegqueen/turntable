@@ -76,4 +76,10 @@ public class MemberController {
         memberService.changeBgImg(userId,newBgImg);
         return "redirect:/main?pageOwnerId="+userId;
     }
+
+    @GetMapping("/imgurl")
+    public ResponseEntity<String> getUserImageUrl(@RequestParam Long pageOwnerId, HttpSession session) {
+        String userBgimg = memberService.getUserBgImg(pageOwnerId);
+        return ResponseEntity.ok(userBgimg);
+    }
 }
