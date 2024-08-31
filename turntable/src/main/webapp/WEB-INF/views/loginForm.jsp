@@ -34,6 +34,9 @@
                     <a href="/oauth2/authorization/naver" class="login-button">
                         <img src="/css/bgimg/네이버로그인라이트.png" alt="Login with Naver">
                     </a>
+                    <a href="/oauth2/authorization/kakao" class="login-button">
+                        <img src="/css/bgimg/kakao_login_medium_narrow.png" alt="Login with Kakao">
+                    </a>
                 </div>
             </form>
         </div>

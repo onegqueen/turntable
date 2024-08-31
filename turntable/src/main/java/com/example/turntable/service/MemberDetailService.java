@@ -59,7 +59,7 @@ public class MemberDetailService implements UserDetailsService, OAuth2UserServic
         Optional<Member> member = memberRepository.findByName(userId);
         if(member.isEmpty()){
             Member newMember = new Member();
-            newMember.setOAuth2User(userId,nickname,"https://kr.object.ncloudstorage.com/turntable-bgimg/0071b2b4-6cd7-4b5e-a424-faaa22db8be0-%EA%B8%B0%EB%B3%B8%EB%B0%B0%EA%B2%BD%ED%99%94%EB%A9%B45.jpg");
+            newMember.setOAuth2User(userId,nickname,"https://turntable-bucket-1.s3.ap-northeast-2.amazonaws.com/20a1004a-9ba7-4821-ab56-1f2ee5df2d3a-KakaoTalk_20240722_111511428.jpg");
             memberRepository.save(newMember);
             return new CustomOAuthDetails(newMember,oAuth2User.getAttributes());
         }

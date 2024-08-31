@@ -17,6 +17,7 @@ import org.springframework.security.web.header.writers.frameoptions.XFrameOption
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -27,23 +28,25 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-                .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
-            .headers(headers -> headers
-                .addHeaderWriter(new XFrameOptionsHeaderWriter(
-                    XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
-            .formLogin(formLogin -> formLogin
-                .loginPage("/login")
-                .defaultSuccessUrl("/login-success"))
-            .oauth2Login(oauth2Login -> oauth2Login
-                .loginPage("/login")
-                .successHandler(new SimpleUrlAuthenticationSuccessHandler("/login-success"))
-                .userInfoEndpoint(userInfo -> userInfo.userService(memberDetailService)))
-            .logout(logout -> logout
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
-                .invalidateHttpSession(true));
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
+                        .requestMatchers("/**").permitAll()
+                        // 나머지 경로에 대한 권한 설정
+                        .anyRequest().permitAll())
+                .headers(headers -> headers
+                        .addHeaderWriter(new XFrameOptionsHeaderWriter(
+                                XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
+                .formLogin(formLogin -> formLogin
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/login-success", true))
+                .oauth2Login(oauth2Login -> oauth2Login
+                        .loginPage("/login")
+                        .successHandler(new SimpleUrlAuthenticationSuccessHandler("/login-success"))
+                        .userInfoEndpoint(userInfo -> userInfo.userService(memberDetailService)))
+                .logout(logout -> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/login")
+                        .invalidateHttpSession(true));
 
         return http.build();
     }
@@ -55,7 +58,7 @@ public class SecurityConfig {
 
     @Bean
     AuthenticationManager authenticationManager(
-        AuthenticationConfiguration authenticationConfiguration) throws Exception {
+            AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
@@ -64,3 +67,4 @@ public class SecurityConfig {
         return new HttpSessionEventPublisher();
     }
 }
+
