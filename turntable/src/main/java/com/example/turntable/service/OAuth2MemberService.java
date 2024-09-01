@@ -38,6 +38,7 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
         String providerId = memberInfo.getProviderId();
         String username = provider + "_" + providerId; //중복이 발생하지 않도록 provider와 providerId를 조합
         String nickname = memberInfo.getNickname();
+        String profile_image = memberInfo.getProfileImageUrl();
         System.out.println(oAuth2User.getAttributes());
         Optional<Member> findMember = memberRepository.findByName(username);
         Member member = null;
@@ -46,7 +47,7 @@ public class OAuth2MemberService extends DefaultOAuth2UserService {
             member = Member.builder()
                     .name(username)
                     .nickname(nickname)
-                    .backGroundImage("https://turntable-bucket-1.s3.ap-northeast-2.amazonaws.com/20a1004a-9ba7-4821-ab56-1f2ee5df2d3a-KakaoTalk_20240722_111511428.jpg")
+                    .backGroundImage(profile_image)
                     .build();
         memberRepository.save(member);
         }
