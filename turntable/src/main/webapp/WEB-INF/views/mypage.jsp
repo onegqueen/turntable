@@ -115,7 +115,7 @@
       data: newNickname,
       contentType: 'application/json; charset=utf-8',
       success: function(response) {
-        alert('아이디가 변경되었습니다.');
+        alert('닉네임이 변경되었습니다.');
         // 성공 시 페이지 리다이렉트
         window.location.href = "/main";
       },

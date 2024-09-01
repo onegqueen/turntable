@@ -64,6 +64,7 @@ public class MemberController {
 
     @PostMapping("user/change-nickname")
     public String changeNickname(@RequestBody String newNickname, HttpSession session) {
+        System.out.println("닉네임 변경시도:"+newNickname);
         Long userId = (Long) session.getAttribute("userId");
         memberService.changeNickName(userId, newNickname);
         return "redirect:/main?pageOwnerId=" + userId;
