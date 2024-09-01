@@ -37,7 +37,8 @@ public class AuthController {
         Long userId = memberService.getUserIdByName(username);
         session.setAttribute("username", username);
         session.setAttribute("userId",userId);
-        return "redirect:/main?pageOwnerId="+userId;
+        return "redirect:/main?page" +
+                "OwnerId="+userId;
     }
 
     @PostMapping("/withdraw")

@@ -15,10 +15,6 @@ public class CustomOAuthDetails implements UserDetails, OAuth2User {
     private Member member;
     private Map<String, Object> attributes;
 
-    public CustomOAuthDetails(Member member) {
-        this.member = member;
-    }
-
     public CustomOAuthDetails(Member member, Map<String, Object> attributes) {
         this.member = member;
         this.attributes = attributes;
