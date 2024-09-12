@@ -57,8 +57,10 @@ public class MemberController {
 
 	@GetMapping("/user/playlist-count")
 	@ResponseBody
-	public ResponseEntity<Integer> getUserPlaylistCount(@RequestParam Long userId) {
-		return ResponseEntity.ok(playListService.getPlaylistCount(userId));
+	public ResponseEntity<Map<String, Integer>> getUserPlaylistCount(@RequestParam("memberId") Long memberId) {
+		Map<String, Integer> response = new HashMap<>();
+		response.put("playlistCount", playListService.getPlaylistCount(memberId));
+		return ResponseEntity.ok(response);
 	}
 
 	@PostMapping("user/change-nickname")
@@ -68,14 +70,18 @@ public class MemberController {
 	}
 
 	@PostMapping("user/change-bgimg")
-	public ResponseEntity<String> changeBgImg(@RequestBody MultipartFile newBgImg, HttpSession session)
+	public ResponseEntity<Map<String, String>> changeBgImg(@RequestBody MultipartFile newBgImg, HttpSession session)
 		throws IOException {
 		Long userId = (Long)session.getAttribute("userId");
-		return ResponseEntity.ok(memberService.changeBgImg(userId, newBgImg));
+		Map<String, String> response = new HashMap<>();
+		response.put("newBgimg", memberService.changeBgImg(userId, newBgImg));
+		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/imgurl")
-	public ResponseEntity<String> getUserImageUrl(@RequestParam Long pageOwnerId, HttpSession session) {
-		return ResponseEntity.ok(memberService.getUserBgImg(pageOwnerId));
+	public ResponseEntity<Map<String, String>> getUserImageUrl(@RequestParam("pageOwnerId") Long pageOwnerId) {
+		Map<String, String> response = new HashMap<>();
+		response.put("imgUrl", memberService.getUserBgImg(pageOwnerId));
+		return ResponseEntity.ok(response);
 	}
 }
