@@ -1,0 +1,51 @@
+= API 문서
+Turntable
+2024-09-12
+:toc: left
+:toclevels: 2
+:source-highlighter: highlightjs
+:sectlinks:
+
+== Member API
+
+=== 1. 아이디 중복 여부 조회
+==== HTTP request
+include::{snippets}/check-username/http-request.adoc[]
+==== request param
+include::{snippets}/check-username/query-parameters.adoc[]
+
+==== HTTP response
+include::{snippets}/check-username/http-response.adoc[]
+==== response body
+include::{snippets}/check-username/response-fields.adoc[]
+
+=== 2. 사용자 정보 조회
+==== HTTP request
+include::{snippets}/find-user-info/http-request.adoc[]
+==== request param
+include::{snippets}/find-user-info/query-parameters.adoc[]
+
+==== HTTP response
+include::{snippets}/find-user-info/http-response.adoc[]
+==== response body
+include::{snippets}/find-user-info/response-fields.adoc[]
+
+=== 3. 페이지별 전체 사용자 목록 조회
+==== HTTP request
+include::{snippets}/find-all-users/http-request.adoc[]
+==== request param
+include::{snippets}/find-all-users/query-parameters.adoc[]
+
+==== HTTP response
+include::{snippets}/find-all-users/http-response.adoc[]
+include::{snippets}/find-all-users/response-fields.adoc[]
+
+=== 4. 페이지별 닉네임으로 사용자 목록 조회
+==== HTTP request
+include::{snippets}/find-all-users-by-nickname/http-request.adoc[]
+==== request param
+include::{snippets}/find-all-users-by-nickname/query-parameters.adoc[]
+
+==== HTTP response
+include::{snippets}/find-all-users-by-nickname/http-response.adoc[]
+include::{snippets}/find-all-users-by-nickname/response-fields.adoc[]

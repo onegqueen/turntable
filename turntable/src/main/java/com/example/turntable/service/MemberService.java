@@ -108,12 +108,12 @@ public class MemberService {
     }
 
     @Transactional
-    public String changeNickName(Long userId, String newNickName) {
+    public MemberInfoResponseDto changeNickName(Long userId, String newNickName) {
         Member member = memberRepository.findById(userId).orElse(null);
         if (isNotUsernameExist(newNickName)) {
             member.changeNickname(newNickName);
             memberRepository.save(member);
-            return newNickName;
+            return getUserById(userId);
         }
         else{
             throw new DuplicatedUsernameException(CustomErrorCode.ALREADY_EXIST_USERNAME);
